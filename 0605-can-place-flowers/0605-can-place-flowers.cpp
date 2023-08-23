@@ -6,7 +6,8 @@ public:
             if(flowerbed[i]==0 && 
                (i==0 || flowerbed[i-1]==0) && (i==size-1 || flowerbed[i+1]==0)){
                 n--;
-                i++;
+                // i++;
+                flowerbed[i]=1;
             }
         }
         return n==0;
