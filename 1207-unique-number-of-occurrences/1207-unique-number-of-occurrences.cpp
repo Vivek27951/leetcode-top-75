@@ -6,7 +6,7 @@ public:
         for(auto num : arr){
             mp[num]++;
         }
-        set<int>s;
+        unordered_set<int>s;
         for(auto& num : mp){
             if(s.find(num.second)!=s.end()) return false;
             s.insert(num.second);
