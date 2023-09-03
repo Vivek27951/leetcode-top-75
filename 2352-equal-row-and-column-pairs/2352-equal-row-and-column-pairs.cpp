@@ -1,31 +1,32 @@
-class Solution {
-    
-    struct VectorHash {
-        size_t operator()(const vector<int>& v) const {
-            hash<int> hasher;
-            size_t seed = 0;
-            for (int i : v) {
-                seed ^= hasher(i) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
-            }
-            return seed;
-        }
-    };
-    
+class Solution {    
 public:
     int equalPairs(vector<vector<int>>& grid) {
         int n = grid.size();
-        unordered_map<vector<int>,int,VectorHash>mp1;
-        for(auto v : grid)
-            mp1[v]++;
         int res = 0;
+        unordered_map<string,int>mp;
         for(int i=0;i<n;i++){
-            vector<int> temp ;
+            string temp = "";
             for(int j=0;j<n;j++){
-                temp.push_back(grid[j][i]);
+                temp+=to_string(grid[i][j]);
+                temp+="#";
             }
-            if(mp1.find(temp)!=mp1.end())
-                res += mp1[temp];
+            mp[temp]++;
+        }
+        for(int i=0;i<n;i++){
+            string temp = "";
+            for(int j=0;j<n;j++){
+                temp+=to_string(grid[j][i]);
+                temp+="#";
+            }
+            res+=mp[temp];
         }
         return res;
     }
 };
+
+
+
+
+
+
+
