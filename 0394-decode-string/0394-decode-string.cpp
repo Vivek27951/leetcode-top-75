@@ -1,57 +1,30 @@
 class Solution {
-    
-    
-    
-    
-    
-    
-    
-    
 public:
     string decodeString(string s) {
-        stack<int>num;
-        stack<string>st;
-        for(int i=0;i<s.size();i++){
-            if(s[i]>='a' && s[i]<='z'){
-                st.push(string(1,s[i]));
-            }else if(s[i]=='[')
-                st.push("[");
-            else if(s[i]==']'){
-                string temp = "";
-                while(st.top()!="["){
-                    temp = st.top()+temp;
-                    st.pop();   
-                }
-                st.pop();
-                int n = num.top();
-                num.pop();
-                string combine = "";
-                while(n--) combine = combine+temp;
-                st.push(combine);
-            }else{
-                string temp = "";
-                while(s[i]>='0' && s[i]<='9'){
-                    temp = temp + s[i];
-                    i++;
-                }
-                i--;
-                num.push(stoi(temp));
+        stack<int> numStack;
+        stack<std::string> strStack;
+        string currentString;
+        int currentNumber = 0;
+
+    for (char c : s) {
+        if (isdigit(c)) {
+            currentNumber = currentNumber * 10 + (c - '0');
+        } else if (c == '[') {
+            numStack.push(currentNumber);
+            strStack.push(currentString);
+            currentNumber = 0;
+            currentString.clear();
+        } else if (c == ']') {
+            int num = numStack.top(); numStack.pop();
+            string prevStr = strStack.top(); strStack.pop();
+            for (int i = 0; i < num; ++i) {
+                prevStr += currentString;
             }
+            currentString = prevStr;
+        } else {  // c is a letter
+            currentString += c;
         }
-        string res = "";
-        while(!st.empty()){
-            res = st.top()+res;
-            st.pop();
-        }
-        return res;
+    }
+    return currentString;
     }
 };
-
-
-
-
-
-
-
-
-
