@@ -18,12 +18,11 @@ public:
         while(second->next){
             ListNode* temp = second->next;
             second->next = first;
-            if(first==head) first->next=NULL;
             first = second;
             second = temp;
         }
         second->next = first;
-        if(first==head) first->next=NULL;
+        head->next=NULL;
         return second;
     }
 };
