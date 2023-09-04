@@ -14,9 +14,8 @@ public:
     TreeNode* searchBST(TreeNode* root, int val) {
         if(!root) return NULL;
         if(root->val==val) return root;
-        TreeNode* l = searchBST(root->left,val);
-        TreeNode* r = searchBST(root->right,val);
-        if(l) return l;
-        return r;
+        if(root->val>val)
+            return searchBST(root->left,val);
+        return searchBST(root->right,val);
     }
 };
