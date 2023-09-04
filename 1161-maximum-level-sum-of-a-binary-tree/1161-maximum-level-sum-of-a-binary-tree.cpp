@@ -10,21 +10,18 @@
  * };
  */
 class Solution {
-    
-    int height(TreeNode* root){
-        if(!root) return 0;
-        return max(height(root->left),height(root->right))+1;
-    }
     void levelSum(TreeNode* root,vector<int>& v,int lev){
         if(!root) return ;
-        v[lev]+=root->val;
+        if(v.size()==lev)
+            v.push_back(root->val);
+        else
+            v[lev]+=root->val;
         levelSum(root->left,v,lev+1);
         levelSum(root->right,v,lev+1);
     }
 public:
     int maxLevelSum(TreeNode* root) {
-        int h = height(root);
-        vector<int>v(h,0);
+        vector<int>v;
         levelSum(root,v,0);
         int res = 0;
         for(int i=1;i<v.size();i++){
