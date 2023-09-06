@@ -4,11 +4,11 @@ class Solution {
         
         if(dp[i]!=-1)
             return dp[i];
-        // if(dp[i+1]==-1)
-            dp[i+1] = helper(nums,i+1,dp);
-        // if(dp[i+2]==-1)
-            dp[i+2] = helper(nums,i+2,dp)+nums[i];
-        return max(dp[i+1] ,dp[i+2]);
+         int c1 = helper(nums,i+1,dp);
+
+           int c2 = helper(nums,i+2,dp)+nums[i];
+        dp[i] = max(c1,c2);
+        return dp[i];
     }
 public:
     int rob(vector<int>& nums) {
