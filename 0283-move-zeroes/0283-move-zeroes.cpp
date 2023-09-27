@@ -6,8 +6,7 @@ public:
         int j = 0;
         while(j<n){
             if(nums[j]!=0){
-                nums[i++] = nums[j++];
-                continue;
+                nums[i++] = nums[j];
             }
             j++;
         }
