@@ -9,10 +9,10 @@ public:
                 nums[curr] = nums[i];
             }
         }
-        if(nums[curr]!=nums[n-1]){
-                curr++;
-                nums[curr] = nums[n-1];
-        }
+        // if(nums[curr]!=nums[n-1]){
+        //         curr++;
+        //         nums[curr] = nums[n-1];
+        // }
         return curr+1;
         
     }
