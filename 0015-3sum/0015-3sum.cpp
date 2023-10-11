@@ -17,6 +17,8 @@ public:
                         t_set.insert(v);
                         s++;
                         e--;
+                        while (s < e && nums[s] == nums[s - 1]) s++;
+                        while (s < e && nums[e] == nums[e + 1]) e--;
                     }else if(sum>0) e--;
                     else s++;
                 }
