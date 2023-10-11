@@ -6,6 +6,7 @@ public:
         vector<vector<int>> res;
         set<vector<int>>t_set;
         for(int i=0;i<n;i++){
+            if (i != 0 && nums[i] == nums[i - 1]) continue;
                 int s = i+1;
                 int e = n-1;
                 while(s<e){
