@@ -9,7 +9,6 @@ class Solution {
         
         v.push_back(candidates[i]);
         helper(s,v,n,i,candidates,target,sum+candidates[i]);
-        helper(s,v,n,i+1,candidates,target,sum+candidates[i]);
         v.pop_back();
         helper(s,v,n,i+1,candidates,target,sum);
     }
