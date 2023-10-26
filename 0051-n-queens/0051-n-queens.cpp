@@ -1,11 +1,11 @@
 class Solution {
     bool valid(vector<string>& temp,int row,int col,int n){
         // check row
-        for(int i=0;i<n;i++){
-            if(temp[row][i]=='Q' && i!=col){
-                return false;
-            }
-        }
+        // for(int i=0;i<n;i++){
+        //     if(temp[row][i]=='Q' && i!=col){
+        //         return false;
+        //     }
+        // }
         
         // check col
         for(int i=0;i<n;i++){
@@ -31,20 +31,20 @@ class Solution {
         }
         
         //check lower daig
-        i = row+1;
-        j = col-1;
-        while(i<n && j>=0){
-            if(temp[i][j]=='Q') return false;
-            i++;j--;
-        }
+        // i = row+1;
+        // j = col-1;
+        // while(i<n && j>=0){
+        //     if(temp[i][j]=='Q') return false;
+        //     i++;j--;
+        // }
         
         //check lower rev diag
-        i = row+1;
-        j = col+1;
-        while(i<n && j<n){
-            if(temp[i][j]=='Q') return false;
-            i++;j++;
-        }
+        // i = row+1;
+        // j = col+1;
+        // while(i<n && j<n){
+        //     if(temp[i][j]=='Q') return false;
+        //     i++;j++;
+        // }
         return true;
     }
     
