@@ -15,10 +15,9 @@ private:
         if(root==NULL) return 0;
         int l = helper(root->left,dia);
         int r = helper(root->right,dia);
-        if(l+r+1>dia) dia = l+r;
+        dia = max(dia,l+r);
         return max(l,r)+1;
     }
-    
 public:
     int diameterOfBinaryTree(TreeNode* root) {
         if(root==NULL) return 0;
