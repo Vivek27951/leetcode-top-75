@@ -4,28 +4,27 @@ public:
         
         int n = v.size();
         sort(v.begin(),v.end());
-        set<vector<int>> s;
+        vector<vector<int>> res;
         for(int i=0;i<=n-3;i++){
             // dup check
+            if(i!=0 && v[i]==v[i-1]) continue;
             int left = i+1;
             int right = n-1;
             while(left<right){
                 int sum = v[i]+v[left]+v[right];
                 if(sum==0){
-                    s.insert({v[i],v[left],v[right]});
-                    left++; // dup check
-                    right--; // dup check
-                }else if(sum<0){
-                    left++;
+                    // s.insert({v[i],v[left],v[right]});
+                    res.push_back({v[i],v[left],v[right]});
+                    while(left+1<right && v[left]==v[left+1]){
+                        left++  ;
+                    }   
+                    left++;   // -4 -1 -1 0 1 2 
+                }else if(sum<0){   
+                    left++; 
                 }else {
-                    right--;
+                    right--; 
                 }
             }
-        }
-
-        vector<vector<int>> res;
-        for(auto x: s){
-            res.push_back(x);
         }
         return res;
         
