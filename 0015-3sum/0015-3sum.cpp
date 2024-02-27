@@ -1,29 +1,33 @@
 class Solution {
 public:
-    vector<vector<int>> threeSum(vector<int>& nums) {
-        int n = nums.size();
-        sort(nums.begin(),nums.end());
-        vector<vector<int>> res;
-        set<vector<int>>t_set;
-        for(int i=0;i<n;i++){
-            if (i != 0 && nums[i] == nums[i - 1]) continue;
-                int s = i+1;
-                int e = n-1;
-                while(s<e){
-                    int m = (s+e)/2;
-                    int sum = nums[i]+nums[s]+nums[e];
-                    if(sum==0){
-                        vector<int> v = {nums[i],nums[s],nums[e]};
-                        t_set.insert(v);
-                        s++;
-                        e--;
-                        while (s < e && nums[s] == nums[s - 1]) s++;
-                        while (s < e && nums[e] == nums[e + 1]) e--;
-                    }else if(sum>0) e--;
-                    else s++;
+    vector<vector<int>> threeSum(vector<int>& v) {
+        
+        int n = v.size();
+        sort(v.begin(),v.end());
+        set<vector<int>> s;
+        for(int i=0;i<=n-3;i++){
+            // dup check
+            int left = i+1;
+            int right = n-1;
+            while(left<right){
+                int sum = v[i]+v[left]+v[right];
+                if(sum==0){
+                    s.insert({v[i],v[left],v[right]});
+                    left++; // dup check
+                    right--; // dup check
+                }else if(sum<0){
+                    left++;
+                }else {
+                    right--;
                 }
             }
-        for(auto x:t_set) res.push_back(x);
+        }
+
+        vector<vector<int>> res;
+        for(auto x: s){
+            res.push_back(x);
+        }
         return res;
-    }
+        
+}
 };
