@@ -2,21 +2,36 @@ class Solution {
 public:
     int trap(vector<int>& hi) {
         int size = hi.size();
-	vector<int> prefix(size);
-	vector<int> suffix(size);
+	    int answer = 0;
+        
+        if(size<2) return answer;
 	
-	// prefix & suffix
-	prefix[0] = hi[0];
-	suffix[size-1] = hi[size-1];
-	for(int i=1;i<size;i++){
-		prefix[i] = max(prefix[i-1],hi[i]);
-		suffix[size-1-i] = max(suffix[size-i],hi[size-i-1]);
-	}
-	
-	int answer = 0;
-	for(int i=0;i<size;i++){
-		answer += min(prefix[i],suffix[i]) - hi[i];
-	}
-	return answer;
+        int start = 0;
+        int remove = 0;
+        for(int end = 1;end<size;end++){
+            if(hi[end]>=hi[start]){
+                answer += hi[start]*(end-start-1);
+                answer -= remove;
+                start = end;
+                remove = 0;
+            }
+            else
+                remove+=hi[end];
+        }
+
+        start = size-1; 
+        remove = 0;
+        for(int end = size-2;end>=0;end--){
+            if(hi[end]>hi[start]){
+                answer += hi[start]*(start-end-1);
+                answer -= remove;
+                start = end;
+                remove = 0;
+            }
+            else
+                remove+=hi[end];
+        }
+        
+        return answer;
     }
 };
