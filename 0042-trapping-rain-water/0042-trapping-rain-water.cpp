@@ -4,7 +4,7 @@ public:
         int size = hi.size();
 	    int answer = 0;
         
-        if(size<2) return answer;
+        // if(size<2) return answer;
 	
         int start = 0;
         int remove = 0;
