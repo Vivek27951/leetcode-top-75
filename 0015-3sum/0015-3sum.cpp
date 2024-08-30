@@ -12,8 +12,8 @@ public:
                 if(sum==0){
                     res.push_back({nums[i],nums[s],nums[e]});
                     while(s<e && nums[s]==nums[s+1]) s++;
-                    while(s<e && nums[e]==nums[e-1]) e--;
-                    s++;e--;
+                    // while(s<e && nums[e]==nums[e-1]) e--;
+                    s++;
                 }else if(sum<0) s++;
                 else e--;
             }
