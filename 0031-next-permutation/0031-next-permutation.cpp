@@ -4,16 +4,14 @@ public:
         int n = nums.size();
         if(n==1) return;
         int i = n-2;
-        while(nums[i]>=nums[i+1]){
-            if(i==0){
-                reverse(nums.begin(),nums.end());
-                return;
-            }
-            i--;
+        while(i>=0 && nums[i]>=nums[i+1])i--;
+        if(i==-1){
+            reverse(nums.begin(),nums.end());
+        }else{
+            int j = n-1;
+            while(nums[j]<=nums[i])j--;
+            swap(nums[i],nums[j]);
+            sort(nums.begin()+i+1,nums.end());
         }
-        int j = n-1;
-        while(nums[j]<=nums[i])j--;
-        swap(nums[i],nums[j]);
-        sort(nums.begin()+i+1,nums.end());
     }
 };
