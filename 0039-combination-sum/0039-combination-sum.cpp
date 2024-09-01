@@ -1,30 +1,23 @@
 class Solution {
-private:
-    void helper(vector<int>& candidates,set<vector<int>>& resSet,vector<int>& temp,
-                int index,int n,int sum,int target){
-        if(sum==target){
-            resSet.insert(temp);
+    
+    void helper(vector<int>& candidates,vector<vector<int>>& ans,vector<int>& temp,int target,int idx){
+        if(target<0 || idx==candidates.size()) return;
+        if(target==0){
+            ans.push_back(temp);
             return;
         }
-        if(index>=n || sum>target) return;
-        
-        temp.push_back(candidates[index]);
-        helper(candidates,resSet,temp,index,n,sum+candidates[index],target);
+        temp.push_back(candidates[idx]);
+        helper(candidates,ans,temp,target-candidates[idx],idx);
         temp.pop_back();
-        helper(candidates,resSet,temp,index+1,n,sum,target);
+        helper(candidates,ans,temp,target,idx+1);
     }
+    
 public:
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
-        set<vector<int>>resSet;
-        vector<int> temp;
         int n = candidates.size();
-        int index = 0;
-        int sum = 0;
-        helper(candidates,resSet,temp,index,n,sum,target);
-        vector<vector<int>> res;
-        for(auto x:resSet){
-            res.push_back(x);
-        }
-        return res;
+        vector<vector<int>> ans;
+        vector<int> temp;
+        helper(candidates,ans,temp,target,0);
+        return ans;
     }
 };
